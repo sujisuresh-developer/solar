@@ -87,7 +87,16 @@ export default function LeadsList() {
   return (
     <div style={{ padding: '28px 32px' }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+     <div
+  style={{
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 16,
+    flexWrap: 'wrap',
+    marginBottom: 24
+  }}
+>
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 800 }}>All Leads</h1>
           <p style={{ fontSize: 14, color: 'var(--slate-400)', marginTop: 3 }}>{total} total leads</p>

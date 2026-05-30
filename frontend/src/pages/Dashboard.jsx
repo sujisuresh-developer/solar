@@ -46,14 +46,47 @@ export default function Dashboard() {
   return (
     <div style={{ padding: '28px 32px' }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
-        <div>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--deep-navy)' }}>Dashboard</h1>
-          <p style={{ fontSize: 14, color: 'var(--slate-400)', marginTop: 3 }}>Solar Lead Management Overview</p>
-        </div>
-        <Link to="/leads/new" className="btn btn-primary">
-          <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add New Lead
+      <div
+        style={{
+          background:
+            "linear-gradient(135deg,#0f172a 0%,#1e40af 100%)",
+          borderRadius: "24px",
+          padding: "32px",
+          color: "white",
+          marginBottom: "24px",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "32px",
+            fontWeight: "800",
+            marginBottom: "8px",
+          }}
+        >
+          Welcome Back 👋
+        </h1>
+
+        <p
+          style={{
+            opacity: 0.8,
+            fontSize: "15px",
+            marginBottom: "24px",
+          }}
+        >
+          Monitor your solar leads, conversions and sales
+          performance in one place.
+        </p>
+
+        <Link
+          to="/leads/new"
+          className="btn"
+          style={{
+            background: "white",
+            color: "#0f172a",
+            fontWeight: "600",
+          }}
+        >
+          + Add New Lead
         </Link>
       </div>
 
@@ -64,7 +97,7 @@ export default function Dashboard() {
         <StatCard label="Conversion Rate" value={`${data.conversionRate}%`} sub="(Won / Total)" accent="var(--sun-gold)" />
         <StatCard
           label="Active Pipeline"
-          value={data.statusBreakdown.filter(s => !['Won','Lost'].includes(s.status)).reduce((a, b) => a + b.count, 0)}
+          value={data.statusBreakdown.filter(s => !['Won', 'Lost'].includes(s.status)).reduce((a, b) => a + b.count, 0)}
           sub="Excluding Won/Lost"
           accent="var(--solar-blue)"
         />
@@ -73,7 +106,16 @@ export default function Dashboard() {
       {/* Chart + Recent */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
         {/* Bar Chart */}
-        <div className="card" style={{ padding: '20px 24px' }}>
+        <div
+          className="card"
+          style={{
+            background: "#fff",
+            borderRadius: "22px",
+            padding: "24px",
+            border: "1px solid #e2e8f0",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          }}
+        >
           <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Leads by Status</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={data.statusBreakdown} barSize={28}>
@@ -85,7 +127,7 @@ export default function Dashboard() {
                 contentStyle={{ borderRadius: 8, border: '1px solid var(--slate-200)', fontSize: 13 }}
                 cursor={{ fill: 'var(--slate-100)' }}
               />
-              <Bar dataKey="count" radius={[5,5,0,0]}>
+              <Bar dataKey="count" radius={[5, 5, 0, 0]}>
                 {data.statusBreakdown.map((entry) => (
                   <Cell key={entry.status} fill={STATUS_CHART_COLORS[entry.status] || '#94A3B8'} />
                 ))}
@@ -95,7 +137,16 @@ export default function Dashboard() {
         </div>
 
         {/* Pipeline status breakdown */}
-        <div className="card" style={{ padding: '20px 24px' }}>
+        <div
+          className="card"
+          style={{
+            background: "#fff",
+            borderRadius: "22px",
+            padding: "24px",
+            border: "1px solid #e2e8f0",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          }}
+        >
           <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Pipeline Breakdown</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {data.statusBreakdown.map(({ status, count }) => {
